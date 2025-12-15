@@ -55,7 +55,7 @@ body {
 
 .seccion__inicio {
   flex: 1;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -119,6 +119,11 @@ body {
   .campo__nombre:focus {
     border-color: #000;
   }
+  #campo__error-nombre {
+    display: none;
+    color: #ff0000;
+    padding: 1rem 0rem;
+  }
 }
 
 .formulario__juego-boton {
@@ -161,7 +166,7 @@ body {
 }
 
 .seccion__juego {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -198,7 +203,7 @@ body {
           transition: transform 0.2s ease;
         }
       }
-      &:nth-child(1):active {
+      &:nth-child(1).activo {
         svg path {
           fill: #fff600;
         }
@@ -214,7 +219,7 @@ body {
           transition: transform 0.2s ease;
         }
       }
-      &:nth-child(2):active {
+      &:nth-child(2).activo {
         svg path {
           fill: #0267ff;
         }
@@ -231,7 +236,7 @@ body {
           transition: transform 0.2s ease;
         }
       }
-      &:nth-child(3):active {
+      &:nth-child(3).activo {
         svg path {
           fill: #00d527;
         }
@@ -248,7 +253,7 @@ body {
           transition: transform 0.2s ease;
         }
       }
-      &:nth-child(4):active {
+      &:nth-child(4).activo {
         svg path {
           fill: #dd0000;
         }
@@ -280,22 +285,22 @@ body {
 .ranking {
   width: 100%;
   display: flex;
+  margin: 1rem;
+}
 
-  .boton__ranking {
-    width: 100%;
-    padding: 0.4rem 0rem;
-    margin: 0rem 1rem 1rem 1rem;
-    background: transparent;
-    cursor: pointer;
-    border: 0.2rem solid #909090;
-    border-radius: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
+.boton__contorno {
+  width: 100%;
+  padding: 0.4rem 0rem;
+  background: transparent;
+  cursor: pointer;
+  border: 0.2rem solid #909090;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .modal {
@@ -372,4 +377,25 @@ body {
   gap: 10px;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+.seccion__juego-terminado {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0rem 1rem;
+}
+
+.seccion__juego-terminado h1 {
+  color: #c90101;
+}
+
+.seccion__juego-terminado p {
+  font-size: 1.2rem;
+}
+
+.seccion__juego-terminado p span {
+  font-size: 1.4rem;
+  font-weight: 600;
 }
