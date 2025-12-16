@@ -4,7 +4,7 @@ var secuencia_juego = [];
 var secuencia_jugador = [];
 var intervalo = null;
 var tiempo_transcurrido = "00:00:00";
-var penalizacion = 60;
+var penalizacion = 20;
 var total_punto = 0;
 var nombre_jugador = "";
 // Valida que el nombre tenga al menos 3 caracteres
@@ -83,7 +83,7 @@ function penalizacion_tiempo(total_ms, penalizacion) {
 }
 // Calcula el puntaje final: 2 puntos por nivel menos la penalizacion
 function calculo_punto(penalizacion_total, secuencia_juego) {
-    var puntos = secuencia_juego.length * 2;
+    var puntos = secuencia_juego.length;
     total_punto = puntos - penalizacion_total;
     if (total_punto < 0) {
         total_punto = 0;

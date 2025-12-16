@@ -49,16 +49,6 @@ Las funciones de reinicio permiten volver al estado inicial del juego, limpiando
 
 ## Estructura del Proyecto
 
-simon-says/
-├── css/
-│   └── styles.css        # Estilos, animaciones y diseño responsivo
-├── js/
-│   ├── logic.js          # Lógica del juego y funciones core
-│   └── script.js         # Flujo del juego y manejo del DOM
-├── img/                  # Recursos de imagen
-├── index.html            # Página principal del juego
-└── README.md             # Documentación del proyecto.
-
 ## Tecnologías Utilizadas
 * **HTML5**: Estructura semántica con doctype, viewport y charset correctamente definidos
 * **CSS3**: 

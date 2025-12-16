@@ -14,18 +14,18 @@
         <img src="./img/logo.svg" alt="Logo Simon" width="60" height="60" />
       </div>
       <nav class="navegacion__iconos">
-        <a href="#" class="enlace__github">
+        <a href="contacto.html" id="navegacion__contacto"> Contacto </a>
+        <a
+          href="https://github.com/UcielD89/simon-game"
+          class="enlace__github"
+          target="_blank"
+        >
           <svg viewBox="0 0 24 24" width="32" height="32" fill="black">
             <path
               d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
             />
           </svg>
         </a>
-        <button class="boton__menu">
-          <svg viewBox="0 0 24 24" width="32" height="32" fill="black">
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-          </svg>
-        </button>
       </nav>
     </header>
     <main class="principal">
@@ -54,42 +54,43 @@
               <span class="icono-play">▶</span>
             </button>
           </div>
+          <div class="ranking">
+            <button type="button" class="boton__contorno" id="boton__ranking">
+              <svg
+                width="38"
+                height="38"
+                viewBox="0 0 38 38"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
+                  fill="#111"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_27_231"
+                    x1="19"
+                    y1="6.33333"
+                    x2="19"
+                    y2="31.6667"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#3C3C3C" />
+                    <stop offset="0.5" stop-color="#D9D9D9" />
+                    <stop offset="1" stop-color="#3C3C3C" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              RANKING
+            </button>
+          </div>
         </form>
-        <div class="ranking">
-          <button class="boton__contorno" id="boton__ranking">
-            <svg
-              width="38"
-              height="38"
-              viewBox="0 0 38 38"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
-                fill="url(#paint0_linear_27_231)"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_27_231"
-                  x1="19"
-                  y1="6.33333"
-                  x2="19"
-                  y2="31.6667"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#3C3C3C" />
-                  <stop offset="0.5" stop-color="#D9D9D9" />
-                  <stop offset="1" stop-color="#3C3C3C" />
-                </linearGradient>
-              </defs>
-            </svg>
-            RANKING DE PARTIDAS
-          </button>
-        </div>
       </section>
       <section class="seccion__juego" id="seccion__juego">
-        <div class="tiempo">
-          <p>TIEMPO: <span id="tiempo__contador">0</span>s</p>
+        <div class="datos__jugador">
+          <p>Esta jugando: <span id="jugador">N/A</span></p>
+          <p>Tiempo: <span id="tiempo__contador">0</span>s</p>
         </div>
         <div class="tablero">
           <div class="tablero__botones">
@@ -406,11 +407,14 @@
           </div>
         </div>
       </section>
-      <section class="seccion__juego-terminado" id="seccion__juego-terminado">
+    </main>
+    <section class="modal__juego-terminado" id="modal__juego-terminado">
+      <div class="modal__content">
         <h1>JUEGO TERMINADO</h1>
         <p>
-          Tu puntuación final: <span class="puntaje__final-contador">0</span>
+          Tu puntuación final: <span id="puntaje__final-contador">0</span>
         </p>
+        <p>Nivel alcanzado: <span id="nivel__final-contador">0</span></p>
         <button class="boton__contorno" id="boton__reiniciar">
           <svg
             width="32px"
@@ -446,12 +450,38 @@
         </button>
         <div class="ranking">
           <button class="boton__contorno" id="boton__ranking__juego-terminando">
-            RANKING DE PARTIDAS
+            <svg
+              width="38"
+              height="38"
+              viewBox="0 0 38 38"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
+                fill="#111"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_27_231"
+                  x1="19"
+                  y1="6.33333"
+                  x2="19"
+                  y2="31.6667"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#3C3C3C" />
+                  <stop offset="0.5" stop-color="#D9D9D9" />
+                  <stop offset="1" stop-color="#3C3C3C" />
+                </linearGradient>
+              </defs>
+            </svg>
+            RANKING
           </button>
         </div>
-      </section>
-    </main>
-    <div id="modal-ranking" class="modal">
+      </div>
+    </section>
+    <div id="modal__ranking" class="modal">
       <div class="modal-content ranking-content">
         <span id="cerrar-ranking" class="close">&times;</span>
         <h2>Tabla de Posiciones</h2>
