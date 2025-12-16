@@ -1,69 +1,131 @@
-# Juego Simon
-Repositorio oficial / Juego Simon 
-Este es un proyecto desarrollado con fines académicos para la materia "Introducción a la Programación Web" de la carrera LGTI. Consiste en una implementación completa del clásico juego "Simón Dice" utilizando tecnologías web estándar: HTML5, CSS3 y JavaScript (ES5).
+# 🎮 Juego Simon
 
-##  Características Principales
-El proyecto implementa la lógica completa del juego "Simon Says", cumpliendo con todos los requerimientos obligatorios y deseados especificados para el trabajo final integrador.
+Repositorio oficial del **Juego Simon**  
+Proyecto académico desarrollado para la materia **Introducción a la Programación Web** – Carrera **LGTI**
 
-# feature-patron
-Generación de secuencia del juego:
-La función crear_sencuencia() agrega un nuevo número aleatorio (0–3) al array secuencia_juego, representando el patrón que el usuario debe repetir.
-Registro de la secuencia del jugador:
-crear_sencuencia_jugador(valor) almacena la entrada del usuario para poder validar su progreso.
-Comparación de secuencias:
-La función comparar_secuencia() realiza una comparación paso a paso entre la secuencia generada por el juego y la ingresada por el jugador.
-Devuelve true si las jugadas coinciden o false si el usuario comete un error.
-Limpieza del estado del juego:
-limpiar_secuencias() restablece ambas secuencias (secuencia_juego y secuncia_jugador) para iniciar una nueva partida o reiniciar el nivel.
+---
 
-# feature-flujo-ranking
-Gestión del flujo completo del juego y ranking persistente:
-Control del estado del juego:
-Se incorporan variables de control (estado_juego, puede_jugar, indice_actual) para gestionar las distintas etapas del juego (inicio, jugando y finalizado), evitando acciones inválidas fuera del flujo esperado.
-Inicialización y vinculación de eventos del DOM:
-La función inicializar_juego() centraliza la asignación de todos los eventos del usuario (inicio de juego, clics de colores, reinicio, visualización y cierre del ranking), asegurando un punto único de arranque cuando el DOM está completamente cargado.
-Flujo de inicio de partida:
-manejar_inicio_juego() valida el nombre del jugador y gestiona la transición entre la pantalla inicial y la pantalla de juego, iniciando una nueva partida de forma controlada.
-Ejecución del juego y validación de jugadas:
-Se implementa la lógica de:
-generación progresiva de la secuencia,
-reproducción visual y sonora del patrón,
-captura de la secuencia ingresada por el jugador,
-verificación paso a paso de la jugada mediante verificar_secuencia().
-Gestión de niveles y puntaje:
-El sistema actualiza dinámicamente el nivel y el puntaje en pantalla, calculando el puntaje final en función del nivel alcanzado y una penalización por tiempo de juego.
-Cronómetro y penalización por tiempo:
-Se incorpora un cronómetro que mide la duración de la partida en milisegundos, aplicando penalizaciones proporcionales al tiempo transcurrido mediante penalizacion_tiempo().
-Persistencia de partidas con localStorage:
-Cada partida finalizada se guarda en localStorage, almacenando nombre del jugador, puntaje, nivel alcanzado, tiempo total y fecha de la partida.
-Visualización y ordenamiento del ranking:
-Se implementa un modal de ranking que permite:
-mostrar todas las partidas guardadas,
-ordenar el ranking por puntaje o por fecha,
-renderizar dinámicamente la lista de resultados en pantalla.
-Reinicio y limpieza del estado:
-Las funciones de reinicio permiten volver al estado inicial del juego, limpiando secuencias, cronómetro y variables de control para comenzar una nueva partida sin inconsistencias.
+## 📌 Descripción General
 
-## Cómo Jugar
+Este proyecto consiste en una implementación completa del clásico juego **“Simón Dice”**, desarrollada utilizando **HTML5, CSS3 y JavaScript (ES5)**.  
+El objetivo es repetir correctamente una secuencia de colores generada de forma aleatoria, la cual aumenta su dificultad en cada nivel.
 
+---
 
-## Estructura del Proyecto
+## ✨ Características Principales
 
-## Tecnologías Utilizadas
-* **HTML5**: Estructura semántica con doctype, viewport y charset correctamente definidos
-* **CSS3**: 
-  * Diseño con Flexbox (sin uso de grid ni float)
-  * Animaciones y transiciones fluidas
-  * Diseño completamente responsivo
-* **JavaScript (ES5 estricto)**:
-  * Código en modo estricto (`'use strict'`)
-  * Sin uso de ES6 (let, const, arrow functions)
-  * Manejo de eventos con `addEventListener`
-  * Almacenamiento con `localStorage`
-  * Manipulación del DOM
+- Implementación completa de la lógica del juego
+- Flujo de juego controlado por estados
+- Sistema de niveles y puntaje
+- Ranking persistente mediante `localStorage`
+- Interfaz responsiva y animada
+- Validaciones y control de errores del usuario
 
-## Autores
-**Daro, Uciel - Corbalan Franco**
-- Carrera: LGTI 2025
-- Materia: Introducción a la Programación Web
-- Profesor: Ing. Marañes Darío
+---
+
+## 🧩 Funcionalidades del Juego
+
+### 🔹 Generación y validación de secuencias
+- Generación automática de patrones aleatorios (valores 0–3)
+- Registro de la secuencia ingresada por el jugador
+- Comparación paso a paso entre la secuencia del juego y la del usuario
+- Detección inmediata de errores
+
+### 🔹 Gestión del estado del juego
+- Control de estados: inicio, jugando y finalizado
+- Prevención de acciones inválidas fuera del flujo esperado
+- Limpieza completa del estado para reinicios seguros
+
+---
+
+## 🏆 Ranking y Flujo Avanzado
+
+### 🔸 Inicio y ejecución de la partida
+- Validación del nombre del jugador
+- Transición controlada entre pantallas
+- Reproducción visual y sonora de la secuencia
+- Captura y verificación de cada jugada
+
+### 🔸 Sistema de niveles y puntaje
+- Incremento progresivo de dificultad
+- Puntaje dinámico basado en:
+  - Nivel alcanzado
+  - Penalización por tiempo de juego
+
+### 🔸 Cronómetro y penalización
+- Medición del tiempo total de partida en milisegundos
+- Penalización proporcional según duración del juego
+
+### 🔸 Persistencia y ranking
+- Almacenamiento de partidas en `localStorage`
+- Datos guardados:
+  - Nombre del jugador
+  - Puntaje final
+  - Nivel alcanzado
+  - Tiempo total
+  - Fecha de la partida
+- Visualización del ranking en un modal
+- Ordenamiento por puntaje o fecha
+
+---
+
+## 🕹️ Cómo Jugar
+
+1. Ingresar el nombre del jugador
+2. Presionar **Iniciar Juego**
+3. Observar la secuencia de colores
+4. Repetir la secuencia en el orden correcto
+5. Avanzar de nivel o finalizar la partida al cometer un error
+6. Consultar el ranking al finalizar
+
+---
+
+## 🗂️ Estructura del Proyecto
+
+```text
+/css
+└── contacto.css
+└── normalize.css
+└── styles.css
+/img
+/js
+└── audio.js
+└── contacto.js
+└── login.js
+└── script.js
+/.gitignore
+/contacto.html
+/index.html
+/LICENSE
+/README.md
+```
+
+## 🛠️ Tecnologías Utilizadas
+
+### 🔹 HTML5
+- Estructura semántica correcta
+- Uso de `doctype`, `meta charset` y `viewport`
+
+### 🔹 CSS3
+- Diseño con **Flexbox**
+- Animaciones y transiciones
+- Diseño completamente responsivo
+- Sin uso de Grid ni Float
+
+### 🔹 JavaScript (ES5 estricto)
+- Uso de `'use strict'`
+- Sin características ES6
+- Manejo de eventos con `addEventListener`
+- Manipulación del DOM
+- Persistencia con `localStorage`
+
+---
+
+## 👥 Autores
+
+**Daro, Uciel**  
+**Corbalán, Franco**
+
+- 🎓 Carrera: LGTI 2025  
+- 📘 Materia: Introducción a la Programación Web  
+- 👨‍🏫 Profesor: Ing. Marañes Darío
