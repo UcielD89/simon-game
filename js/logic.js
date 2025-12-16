@@ -56,6 +56,10 @@ function iniciar_tiempo() {
         var minutos = Math.floor(transcurrido / 60000);
         var minutos_formateados = minutos.toString().padStart(2, '0');
         tiempo_transcurrido = minutos_formateados + ":" + segundos_formateados + ":" + ms_formateado;
+        var tiempo_elemento = document.getElementById("tiempo__contador");
+        if (tiempo_elemento) {
+            tiempo_elemento.textContent = minutos_formateados + ":" + segundos_formateados;
+        }
     }, 10);
 }
 // Detiene el cronometro de la partida
@@ -86,6 +90,7 @@ function calculo_punto(penalizacion_total, secuencia_juego) {
     }
     return total_punto;
 }
+
 // Guarda la partida actual en localStorage con todos sus datos
 function guardar_partida(nombre, puntaje, nivel, tiempo) {
     var partidas = localStorage.getItem("partidas");
@@ -137,4 +142,8 @@ function reiniciar_juego() {
     detener_tiempo();
     tiempo_transcurrido = "00:00:00";
     total_punto = 0;
+    var tiempo_elemento = document.getElementById("tiempo__contador");
+    if (tiempo_elemento) {
+        tiempo_elemento.textContent = "0:00";
+    }
 }

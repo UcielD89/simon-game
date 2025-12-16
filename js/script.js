@@ -115,8 +115,11 @@ function verificar_secuencia() {
     finalizar_juego(false);
     return;
   }
-  actualizar_puntaje();
   if (secuencia_jugador.length === secuencia_juego.length) {
+    var total_ms = calcular_segundos(tiempo_transcurrido);
+    var penalizacion_total = penalizacion_tiempo(total_ms, penalizacion);
+    total_punto = calculo_punto(penalizacion_total, secuencia_juego);
+    actualizar_puntaje();
     puede_jugar = false;
     secuencia_jugador.length = 0;
     setTimeout(function () {
@@ -179,8 +182,10 @@ function manejar_reinicio_juego() {
   reiniciar_juego();
   var puntaje_elemento = document.getElementById("puntaje__contador");
   var nivel_elemento = document.getElementById("nivel__contandor");
+  var tiempo_elemento = document.getElementById("tiempo__contador");
   puntaje_elemento.textContent = "0";
   nivel_elemento.textContent = "0";
+  tiempo_elemento.textContent = "0:00";
 }
 // Muestra el modal de ranking ordenado por puntaje
 function manejar_mostrar_ranking() {
