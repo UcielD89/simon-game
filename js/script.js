@@ -27,6 +27,7 @@ function inicializar_juego() {
 // Maneja el inicio del juego validando el nombre del jugador
 function manejar_inicio_juego() {
   var input_nombre = document.getElementById("campo__nombre");
+  var txt_nombre_jugador = document.getElementById("jugador");
   var nombre = input_nombre.value.trim();
   var error_nombre = document.getElementById("campo__error-nombre");
   if (!validar_nombre(nombre)) {
@@ -35,6 +36,7 @@ function manejar_inicio_juego() {
     return;
   }
   error_nombre.style.display = "none";
+  txt_nombre_jugador.innerText = nombre;
   nombre_jugador = nombre;
   var pantalla_inicio = document.getElementById("seccion__inicio");
   var pantalla_juego = document.getElementById("seccion__juego");
@@ -115,11 +117,10 @@ function verificar_secuencia() {
     finalizar_juego(false);
     return;
   }
+  total_punto = total_punto + 1;
+  actualizar_puntaje();
+
   if (secuencia_jugador.length === secuencia_juego.length) {
-    var total_ms = calcular_segundos(tiempo_transcurrido);
-    var penalizacion_total = penalizacion_tiempo(total_ms, penalizacion);
-    total_punto = calculo_punto(penalizacion_total, secuencia_juego);
-    actualizar_puntaje();
     puede_jugar = false;
     secuencia_jugador.length = 0;
     setTimeout(function () {
@@ -127,7 +128,6 @@ function verificar_secuencia() {
     }, 1000);
   }
 }
-
 // Actualiza el puntaje mostrado en pantalla
 function actualizar_puntaje() {
   var puntaje_elemento = document.getElementById("puntaje__contador");
@@ -139,13 +139,16 @@ function actualizar_nivel() {
   nivel_elemento.textContent = obtener_nivel_actual();
 }
 // Finaliza el juego calculando el puntaje y guardando la partida
-function finalizar_juego(gano) {
+function finalizar_juego() {
   estado_juego = "finalizado";
   puede_jugar = false;
   detener_tiempo();
   var total_ms = calcular_segundos(tiempo_transcurrido);
   var penalizacion_total = penalizacion_tiempo(total_ms, penalizacion);
-  var puntaje_final = calculo_punto(penalizacion_total, secuencia_juego);
+  var puntaje_final = total_punto - penalizacion_total;
+  if (puntaje_final < 0) {
+    puntaje_final = 0;
+  }
   var nivel_final = obtener_nivel_actual();
   guardar_partida(
     nombre_jugador,
@@ -157,14 +160,12 @@ function finalizar_juego(gano) {
 }
 // Muestra el modal de fin de juego con el puntaje final
 function mostrar_modal_fin_juego(puntaje, nivel) {
-  var pantalla_juego = document.getElementById("seccion__juego");
-  var seccion_juego_terminado = document.getElementById("seccion__juego-terminado");
-  var puntaje_final = document.getElementById("puntaje__contador");
-  var nivel_final = document.getElementById("nivel__contandor");
+  var modal_juego_terminado = document.getElementById("modal__juego-terminado");
+  var puntaje_final = document.getElementById("puntaje__final-contador");
+  var nivel_final = document.getElementById("nivel__final-contador");
   puntaje_final.textContent = puntaje;
   nivel_final.textContent = nivel;
-  pantalla_juego.style.display = "none";
-  seccion_juego_terminado.style.display = "flex";
+  modal_juego_terminado.style.display = "flex";
 }
 // Cierra el modal de fin de juego
 function manejar_seccion_cerrar() {
@@ -175,9 +176,9 @@ function manejar_seccion_cerrar() {
 function manejar_reinicio_juego() {
   var pantalla_juego = document.getElementById("seccion__juego");
   var pantalla_inicio = document.getElementById("seccion__inicio");
-  var pantalla_juego_terminado = document.getElementById("seccion__juego-terminado");
+  var modal_juego_terminado = document.getElementById("modal__juego-terminado");
   pantalla_juego.style.display = "none";
-  pantalla_juego_terminado.style.display = "none";
+  modal_juego_terminado.style.display = "none";
   pantalla_inicio.style.display = "flex";
   reiniciar_juego();
   var puntaje_elemento = document.getElementById("puntaje__contador");
@@ -189,7 +190,7 @@ function manejar_reinicio_juego() {
 }
 // Muestra el modal de ranking ordenado por puntaje
 function manejar_mostrar_ranking() {
-  var modal_ranking = document.getElementById("modal-ranking");
+  var modal_ranking = document.getElementById("modal__ranking");
   var partidas = obtener_partidas();
   var partidas_ordenadas = ordenar_partidas_por_puntaje(partidas);
 
@@ -198,7 +199,7 @@ function manejar_mostrar_ranking() {
 }
 // Cierra el modal de ranking
 function manejar_cerrar_ranking() {
-  var modal_ranking = document.getElementById("modal-ranking");
+  var modal_ranking = document.getElementById("modal__ranking");
   modal_ranking.style.display = "none";
 }
 // Ordena el ranking por puntaje y actualiza la vista
