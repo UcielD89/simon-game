@@ -29,7 +29,7 @@
       </nav>
     </header>
     <main class="principal">
-      <section class="seccion__inicio">
+      <section class="seccion__inicio" id="seccion__inicio">
         <div class="bloque__titulo">
           <h1 class="texto__titulo">SIMON</h1>
           <img src="./img/logo.svg" alt="Logo Simon" width="60" height="60" />
@@ -46,22 +46,54 @@
               class="campo__nombre"
               placeholder="Nombre del jugador"
             />
+            <p id="campo__error-nombre"></p>
           </div>
           <div class="formulario__juego-boton">
-            <button type="submit" class="boton__empezar">
+            <button type="button" class="boton__empezar" id="boton__empezar">
               EMPEZAR A JUGAR
               <span class="icono-play">▶</span>
             </button>
           </div>
         </form>
+        <div class="ranking">
+          <button class="boton__contorno" id="boton__ranking">
+            <svg
+              width="38"
+              height="38"
+              viewBox="0 0 38 38"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
+                fill="url(#paint0_linear_27_231)"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_27_231"
+                  x1="19"
+                  y1="6.33333"
+                  x2="19"
+                  y2="31.6667"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#3C3C3C" />
+                  <stop offset="0.5" stop-color="#D9D9D9" />
+                  <stop offset="1" stop-color="#3C3C3C" />
+                </linearGradient>
+              </defs>
+            </svg>
+            RANKING DE PARTIDAS
+          </button>
+        </div>
       </section>
-      <section class="seccion__juego">
+      <section class="seccion__juego" id="seccion__juego">
         <div class="tiempo">
           <p>TIEMPO: <span id="tiempo__contador">0</span>s</p>
         </div>
         <div class="tablero">
           <div class="tablero__botones">
-            <button class="tablero__boton">
+            <button class="tablero__boton" data-color="0">
               <svg
                 width="159"
                 height="211"
@@ -136,7 +168,7 @@
                 </defs>
               </svg>
             </button>
-            <button class="tablero__boton">
+            <button class="tablero__boton" data-color="1">
               <svg
                 width="211"
                 height="159"
@@ -211,7 +243,7 @@
                 </defs>
               </svg>
             </button>
-            <button class="tablero__boton">
+            <button class="tablero__boton" data-color="2">
               <svg
                 width="159"
                 height="211"
@@ -286,7 +318,7 @@
                 </defs>
               </svg>
             </button>
-            <button class="tablero__boton">
+            <button class="tablero__boton" data-color="3">
               <svg
                 width="211"
                 height="159"
@@ -365,63 +397,76 @@
         </div>
         <div class="puntaje">
           <div class="puntaje__item">
-            <span>0</span>
+            <span id="nivel__contandor">0</span>
             <p>NIVEL</p>
           </div>
           <div class="puntaje__item">
-            <span>0</span>
+            <span id="puntaje__contador">0</span>
             <p>PUNTAJE</p>
           </div>
         </div>
-        <div class="ranking">
-          <button class="boton__ranking" id="boton__ranking">
-            <svg
-              width="38"
-              height="38"
-              viewBox="0 0 38 38"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+      </section>
+      <section class="seccion__juego-terminado" id="seccion__juego-terminado">
+        <h1>JUEGO TERMINADO</h1>
+        <p>
+          Tu puntuación final: <span class="puntaje__final-contador">0</span>
+        </p>
+        <button class="boton__contorno" id="boton__reiniciar">
+          <svg
+            width="32px"
+            height="32px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
               <path
-                d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
-                fill="url(#paint0_linear_27_231)"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_27_231"
-                  x1="19"
-                  y1="6.33333"
-                  x2="19"
-                  y2="31.6667"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#3C3C3C" />
-                  <stop offset="0.5" stop-color="#D9D9D9" />
-                  <stop offset="1" stop-color="#3C3C3C" />
-                </linearGradient>
-              </defs>
-            </svg>
+                d="M12 2.99988C16.9706 2.99988 21 7.02931 21 11.9999C21 16.9704 16.9706 20.9999 12 20.9999C7.02944 20.9999 3 16.9704 3 11.9999C3 9.17261 4.30367 6.64983 6.34267 4.99988"
+                stroke="#292929"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              ></path>
+              <path
+                d="M3 4.49988H7V8.49988"
+                stroke="#292929"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              ></path>
+            </g>
+          </svg>
+          REINICIAR PARTIDA
+        </button>
+        <div class="ranking">
+          <button class="boton__contorno" id="boton__ranking__juego-terminando">
             RANKING DE PARTIDAS
           </button>
         </div>
       </section>
-      <div id="modal-ranking" class="modal">
-        <div class="modal-content ranking-content">
-          <span id="cerrar-ranking" class="close">&times;</span>
-          <h2>Tabla de Posiciones</h2>
-
-          <div class="filtros">
-            <button id="ordenar-puntaje" class="btn-small">
-              Ordenar por Puntaje
-            </button>
-            <button id="ordenar-fecha" class="btn-small">
-              Ordenar por Fecha
-            </button>
-          </div>
-          <div id="lista-partidas" class="lista-scroll"></div>
-        </div>
-      </div>
     </main>
+    <div id="modal-ranking" class="modal">
+      <div class="modal-content ranking-content">
+        <span id="cerrar-ranking" class="close">&times;</span>
+        <h2>Tabla de Posiciones</h2>
+        <div class="filtros">
+          <button id="ordenar-puntaje" class="btn-small">
+            Ordenar por Puntaje
+          </button>
+          <button id="ordenar-fecha" class="btn-small">
+            Ordenar por Fecha
+          </button>
+        </div>
+        <div id="lista-partidas" class="lista-scroll"></div>
+      </div>
+    </div>
+    <script src="./js/audio.js"></script>
     <script src="./js/logic.js"></script>
     <script src="./js/script.js"></script>
   </body>
