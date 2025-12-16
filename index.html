@@ -1,19 +1,492 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simon</title>
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <header class="header"></header>
-    <main class="main">
-        <section class="section"></section>
+    <link rel="shortcut icon" href="./img/favico.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="cabecera-superior">
+      <div class="logo-contenedor">
+        <img src="./img/logo.svg" alt="Logo Simon" width="60" height="60" />
+      </div>
+      <nav class="navegacion-iconos">
+        <a href="contacto.html" id="navegacion-contacto">Contacto</a>
+        <a
+          href="https://github.com/UcielD89/simon-game"
+          class="enlace-github"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="black">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+            />
+          </svg>
+        </a>
+      </nav>
+    </header>
+    <main class="principal">
+      <section class="seccion-inicio" id="seccion-inicio">
+        <div class="bloque-titulo">
+          <h1 class="texto-titulo">SIMON</h1>
+          <img src="./img/logo.svg" alt="Logo Simon" width="60" height="60" />
+        </div>
+        <p class="texto-descripcion">
+          Bienvenido al juego <strong>ritmico</strong> mas famoso del mundo
+        </p>
+        <form class="formulario-juego">
+          <div class="formulario-juego-campo">
+            <input
+              type="text"
+              id="campo-nombre"
+              class="campo-nombre"
+              placeholder="Nombre del jugador"
+            />
+            <p id="campo-error-nombre"></p>
+          </div>
+          <div class="formulario-juego-boton">
+            <button type="button" class="boton-empezar" id="boton-empezar">
+              EMPEZAR A JUGAR<span class="icono-play">▶</span>
+            </button>
+          </div>
+          <div class="ranking">
+            <button type="button" class="boton-contorno" id="boton-ranking">
+              <svg
+                width="38"
+                height="38"
+                viewBox="0 0 38 38"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
+                  fill="#111"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_27_231"
+                    x1="19"
+                    y1="6.33333"
+                    x2="19"
+                    y2="31.6667"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#3C3C3C" />
+                    <stop offset="0.5" stop-color="#D9D9D9" />
+                    <stop offset="1" stop-color="#3C3C3C" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              RANKING
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="seccion-juego" id="seccion-juego">
+        <div class="datos-jugador">
+          <p>Esta jugando: <span id="jugador">N/A</span></p>
+          <p>Tiempo: <span id="tiempo-contador">0</span>s</p>
+        </div>
+        <div class="tablero">
+          <div class="tablero-botones">
+            <button class="tablero-boton" data-color="0">
+              <svg
+                width="159"
+                height="211"
+                viewBox="0 0 159 211"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_di_27_52)">
+                  <path
+                    d="M60.3865 200.146L155.459 105.073L60.3865 10C2.53759 60.1822 2.53759 149.964 60.3865 200.146Z"
+                    fill="#FFF700"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_di_27_52"
+                    x="0"
+                    y="0"
+                    width="158.459"
+                    height="210.146"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dx="-7" />
+                    <feGaussianBlur stdDeviation="5" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_27_52"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_27_52"
+                      result="shape"
+                    />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dx="-8" />
+                    <feComposite
+                      in2="hardAlpha"
+                      operator="arithmetic"
+                      k2="-1"
+                      k3="1"
+                    />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0.524038 0 0 0 0 0.506823 0 0 0 0 0.00755825 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="shape"
+                      result="effect2_innerShadow_27_52"
+                    />
+                  </filter>
+                </defs>
+              </svg>
+            </button>
+            <button class="tablero-boton" data-color="1">
+              <svg
+                width="211"
+                height="159"
+                viewBox="0 0 211 159"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_di_27_51)">
+                  <path
+                    d="M10 60.3867L105.073 155.46L200.146 60.3867C149.964 2.53777 60.1822 2.53777 10 60.3867Z"
+                    fill="#0267FF"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_di_27_51"
+                    x="0"
+                    y="0"
+                    width="210.146"
+                    height="158.46"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="-7" />
+                    <feGaussianBlur stdDeviation="5" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_27_51"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_27_51"
+                      result="shape"
+                    />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="-8" />
+                    <feComposite
+                      in2="hardAlpha"
+                      operator="arithmetic"
+                      k2="-1"
+                      k3="1"
+                    />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0.209615 0 0 0 0 0.524038 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="shape"
+                      result="effect2_innerShadow_27_51"
+                    />
+                  </filter>
+                </defs>
+              </svg>
+            </button>
+            <button class="tablero-boton" data-color="2">
+              <svg
+                width="159"
+                height="211"
+                viewBox="0 0 159 211"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_di_27_53)">
+                  <path
+                    d="M98.0729 10L3 105.073L98.0729 200.146C155.922 149.964 155.922 60.1822 98.0729 10Z"
+                    fill="#00FF2F"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_di_27_53"
+                    x="0"
+                    y="0"
+                    width="158.459"
+                    height="210.146"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dx="7" />
+                    <feGaussianBlur stdDeviation="5" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_27_53"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_27_53"
+                      result="shape"
+                    />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dx="8" />
+                    <feComposite
+                      in2="hardAlpha"
+                      operator="arithmetic"
+                      k2="-1"
+                      k3="1"
+                    />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0.504808 0 0 0 0 0.0925481 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="shape"
+                      result="effect2_innerShadow_27_53"
+                    />
+                  </filter>
+                </defs>
+              </svg>
+            </button>
+            <button class="tablero-boton" data-color="3">
+              <svg
+                width="211"
+                height="159"
+                viewBox="0 0 211 159"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_di_27_54)">
+                  <path
+                    d="M200.146 98.0729L105.073 3L10.0001 98.0729C60.1823 155.922 149.964 155.922 200.146 98.0729Z"
+                    fill="#FF0000"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_di_27_54"
+                    x="0"
+                    y="0"
+                    width="210.146"
+                    height="158.46"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="7" />
+                    <feGaussianBlur stdDeviation="5" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_27_54"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_27_54"
+                      result="shape"
+                    />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset dy="8" />
+                    <feComposite
+                      in2="hardAlpha"
+                      operator="arithmetic"
+                      k2="-1"
+                      k3="1"
+                    />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0.543269 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="shape"
+                      result="effect2_innerShadow_27_54"
+                    />
+                  </filter>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="puntaje">
+          <div class="puntaje-item">
+            <span id="nivel-contandor">0</span>
+            <p>NIVEL</p>
+          </div>
+          <div class="puntaje-item">
+            <span id="puntaje-contador">0</span>
+            <p>PUNTAJE</p>
+          </div>
+        </div>
+      </section>
     </main>
+    <section class="modal-juego-terminado" id="modal-juego-terminado">
+      <div class="modal-content">
+        <h1>JUEGO TERMINADO</h1>
+        <p>Tu puntuación final: <span id="puntaje-final-contador">0</span></p>
+        <p>Nivel alcanzado: <span id="nivel-final-contador">0</span></p>
+        <button class="boton-contorno" id="boton-reiniciar">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2.99988C16.9706 2.99988 21 7.02931 21 11.9999C21 16.9704 16.9706 20.9999 12 20.9999C7.02944 20.9999 3 16.9704 3 11.9999C3 9.17261 4.30367 6.64983 6.34267 4.99988"
+              stroke="#292929"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+            <path
+              d="M3 4.49988H7V8.49988"
+              stroke="#292929"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+          REINICIAR PARTIDA
+        </button>
+        <div class="ranking">
+          <button class="boton-contorno" id="boton-ranking-juego-terminando">
+            <svg
+              width="38"
+              height="38"
+              viewBox="0 0 38 38"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.91667 25.3333L4.75 7.91666L13.4583 15.8333L19 6.33333L24.5417 15.8333L33.25 7.91666L30.0833 25.3333H7.91667ZM30.0833 30.0833C30.0833 31.0333 29.45 31.6667 28.5 31.6667H9.5C8.55 31.6667 7.91667 31.0333 7.91667 30.0833V28.5H30.0833V30.0833Z"
+                fill="#111"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_27_231"
+                  x1="19"
+                  y1="6.33333"
+                  x2="19"
+                  y2="31.6667"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#3C3C3C" />
+                  <stop offset="0.5" stop-color="#D9D9D9" />
+                  <stop offset="1" stop-color="#3C3C3C" />
+                </linearGradient>
+              </defs>
+            </svg>
+            RANKING
+          </button>
+        </div>
+      </div>
+    </section>
+    <div id="modal-ranking" class="modal">
+      <div class="modal-content ranking-content">
+        <span id="cerrar-ranking" class="close">&times;</span>
+        <h2>Tabla de Posiciones</h2>
+        <div class="filtros">
+          <button id="ordenar-puntaje" class="btn-small">
+            Ordenar por Puntaje
+          </button>
+          <button id="ordenar-fecha" class="btn-small">
+            Ordenar por Fecha
+          </button>
+        </div>
+        <div id="lista-partidas" class="lista-scroll"></div>
+      </div>
+    </div>
+    <script src="./js/audio.js"></script>
     <script src="./js/logic.js"></script>
     <script src="./js/script.js"></script>
-</body>
+  </body>
 </html>

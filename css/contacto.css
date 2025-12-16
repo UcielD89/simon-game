@@ -1,0 +1,108 @@
+.seccion-contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 2rem;
+}
+.contacto-contenedor {
+  max-width: 600px;
+  width: 100%;
+  padding: 3rem;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px #0000001a;
+}
+.contacto-titulo {
+  margin-bottom: 1rem;
+  color: #333333;
+  font-size: 2.5rem;
+  text-align: center;
+}
+.contacto-descripcion {
+  margin-bottom: 2rem;
+  color: #666666;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.formulario-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.formulario-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.formulario-campo label {
+  color: #333333;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.formulario-campo input,
+.formulario-campo textarea {
+  padding: 0.75rem;
+  border: 2px solid #dddddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+.formulario-campo input:focus,
+.formulario-campo textarea:focus {
+  border-color: #667eea;
+  outline: none;
+}
+.formulario-campo textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+.error-mensaje {
+  display: none;
+  margin-top: 0.25rem;
+  color: #ff0000;
+  font-size: 0.875rem;
+}
+.formulario-boton {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.boton-enviar {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.boton-enviar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px #667eea66;
+}
+.boton-enviar:active {
+  transform: translateY(0);
+}
+.enlace-volver {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.enlace-volver:hover {
+  transform: translateX(-5px);
+}
+@media (max-width: 768px) {
+  .contacto-contenedor {
+    padding: 2rem 1.5rem;
+  }
+  .contacto-titulo {
+    font-size: 2rem;
+  }
+  .contacto-descripcion {
+    font-size: 1rem;
+  }
+}
