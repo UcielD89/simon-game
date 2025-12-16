@@ -194,6 +194,11 @@ body {
   cursor: pointer;
   pointer-events: none;
 }
+@supports (-webkit-touch-callout: none) {
+  .tablero-boton svg g {
+    filter: none;
+  }
+}
 .tablero-boton:nth-child(1) {
   top: 3.4rem;
   left: 0;
@@ -278,6 +283,7 @@ body {
 }
 .boton-contorno {
   display: flex;
+  color: #111;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
